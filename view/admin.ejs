@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>admin</title>
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class=" text-center">admin</h1>
+        </div>
+        <div>
+                <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <% for(var i=0; i<data.length; i++) {%>
+                            <tr>
+                                <td>
+                                    <%=data[i].name%>
+                                </td>
+                            <td>
+                                <%=data[i].email%>
+                            </td>
+                            <td>
+                                <%=data[i].phone%>
+                            </td>
+                            </tr>
+                        <% } %>
+                      </tr>
+                    </tbody>
+                  </table>
+        </div>
+    </body>
+</html>

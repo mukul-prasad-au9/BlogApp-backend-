@@ -5,6 +5,7 @@ const session = require('express-session');
 const port = process.env.PORT || 6700;
 const app = express();
 
+const Routes = require("./Routes/blog")
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json());
@@ -14,13 +15,15 @@ app.use(session({
 }))
 
 app.use(express.static(__dirname+"/public"));
-app.set("views","/view");
+app.set("views","./view");
 app.set("view engine","ejs")
 
-app.get("/",(req,res)=>{
+app.get("/health",(req,res)=>{
     res.send("health ok")
 })
 
 app.listen(port,()=>{
     console.log("server created")
 })
+
+app.use("/",Routes)
