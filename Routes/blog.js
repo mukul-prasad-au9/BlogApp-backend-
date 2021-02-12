@@ -22,7 +22,7 @@ Router.get('/login',(req,res) => {
         color="danger"
     }
     else{
-        button ="Login"
+        button ="Login" 
         color="success"
     }
     res.render('login',{navdata:navdata,button,color,message})
