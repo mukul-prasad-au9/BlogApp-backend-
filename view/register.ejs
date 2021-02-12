@@ -8,6 +8,18 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <nav>
+            <div style="background-color: black;height: 10vh;" class="container-fluid d-flex align-items-center">
+                <div class="col-5 d-flex flex-row justify-content-between">
+                  <%for(i=0;i<navdata.length;i++){%>
+                    <a href="<%=navdata[i]%>"><%=navdata[i]%></a>
+                  <%}%>
+                  <div>
+                    <button class="btn btn-<%=color%>"><a href="<%=button%>"><%=button%></a></button>
+                  </div>
+                </div>
+            </div>
+          </nav>
         <div class="container">
             <h1 class=" text-center">Register</h1>
         </div>
@@ -17,7 +29,8 @@
                 <input type="text" class="form-control" name="phone" placeholder="phone"/>
                 <input type="text" class="form-control" name="email" placeholder="email"/>
                 <input type="text" class="form-control" name="password" placeholder="password"/>
-                <button type="submit" class="btn btn-danger">Register</button>
+                <div class="mt-2"><button class="btn btn-danger" type="submit">Register</button>
+                  ?Already have an Account<a href="/login" style="color: blue;" class="ml-2">Login</a></div>
             </form>
         </div>
     </body>
