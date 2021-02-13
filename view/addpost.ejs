@@ -21,17 +21,12 @@
             </div>
           </nav>
         <div class="container">
-            <h1 class=" text-center">LOGIN</h1>
+            <h1 class=" text-center">AddPost</h1>
         </div>
         <div class="container col-5 d-flex flex-column">
-            <form action="/login" method="POST">
-              <span style="color: red;"><%=message%></span>
-                <input type="text" class="form-control mt-2" name="email" placeholder="email"/>
-                <input type="text" class="form-control mt-2" name="password" placeholder="password"/>
-                <div class="mt-2"><button class="btn btn-primary" type="submit" >LOGIN</button>
-                  ?Dont have an Account<a href="/register" style="color: red;" class="ml-2">Register</a></div>
-                
-            </form>
+                <input type="text" class="form-control mt-2" name="title" placeholder="title"/>
+                <input type="text" class="form-control mt-2" name="desc" placeholder="desc"/>
+                <input type="text" class="form-control mt-2" name="tags" placeholder="tags"/>
         </div>
     </body>
 </html>

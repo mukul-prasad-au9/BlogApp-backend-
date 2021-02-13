@@ -3,9 +3,12 @@ const session = require("express-session");
 const Router = express.Router();
 const app = express();
 const col_name ="user";
+
 let db;
 const mongoConnect = require("../mongo")
 mongoConnect((data)=>db=data)
+
+console.log(db,"db")
 
 const navdata=["post","addpost","admin"]
 
@@ -27,7 +30,8 @@ Router.get('/login',(req,res) => {
     }
     res.render('login',{navdata:navdata,button,color,message})
 })
-Router.get("/logout",(_,res)=>{
+Router.get("/logout",(req,res)=>{
+    req.session.user=null
     res.redirect("/login")
 })
 
@@ -49,15 +53,16 @@ Router.get("/admin",(req,res)=>{
     if(req.session.user){
         button = "Logout"
         color="danger"
+        db.collection(col_name).find().toArray((err,data)=>{
+            if(err) throw err;
+            res.render("admin",{data:data,navdata:navdata,button:button,color})
+        })
     }
     else{
         button ="Login"
         color="success"
+        res.redirect("/login?message=login first")
     }
-    db.collection(col_name).find().toArray((err,data)=>{
-        if(err) throw err;
-        res.render("admin",{data:data,navdata:navdata,button:button,color})
-    })
 })
 
 Router.post("/login",(req,res)=>{

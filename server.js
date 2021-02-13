@@ -6,6 +6,8 @@ const port = process.env.PORT || 6700;
 const app = express();
 
 const Routes = require("./Routes/blog")
+const Post = require("./Routes/post")
+
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json());
@@ -27,3 +29,4 @@ app.listen(port,()=>{
 })
 
 app.use("/",Routes)
+app.use("/post",Post)
