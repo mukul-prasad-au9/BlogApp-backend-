@@ -6,6 +6,9 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <style>
+        #comments {display: none;}
+        </style>
     </head>
     <body>
         <nav style="background-color: black;height: 10vh;" class="d-flex align-items-center">
@@ -25,11 +28,36 @@
         </div>
         <div class="container col-5 d-flex flex-column">
             <%for(i=0;i<post.length;i++){%>
-                <h1><%=post[i].title%></h1>
-                <p><%=post[i].desc%></p>
-                <h4><%=post[i].createdby%></h4>
-                <h5><%=post[i].tags%></h5>
+                <h1>Title--<%=post[i].title%></h1>
+                <p>Description--<%=post[i].desc%></p>
+                <h4>createdby--<%=post[i].createdby%></h4>
+                <h5>Tags--<%=post[i].tags%></h5>
+                <button onclick="myFunction()" class="btn btn-info">comment</button>
+                <div id="comments">
+                  <form action="/post" method="POST">
+                    <input type="text" placeholder="add comment" name="comments" class="form-control"/>
+                    <input style="display: none;"  value="<%=post[i]._id%>" name="id" readonly/>
+                    <button type="submit" class="btn btn-dark">add</button>
+                  </form>
+                    <%for(j=0;j<comments.length;j++){%>
+                        <%if(post[i]._id==comments[j].id){%>
+                          <p><%=comments[j].comments%></p>
+                        <%}%>
+                      <%}%>
+                </div>
                 <%}%>
-        </div>
+        </div>          
+          <script>
+          function myFunction() {
+            var comments = document.getElementById("comments");
+          
+            if (comments.style.display === "none") {
+             comments.style.display = "inline";
+            } else {
+             comments.style.display = "none";
+            }
+          }
+          </script>
+          
     </body>
 </html>

@@ -18,9 +18,21 @@ router.route("/").get((req,res)=>{
         color ="success"
     }
     db.collection("post").find().toArray((err,data)=>{
-        res.render("post",{post:data,navdata,button,color})
+        db.collection("comments").find().toArray((er,comments)=>{
+            res.render("post",{post:data,navdata,button,color,comments})
+        })
     })
 
+})
+router.route("/").post((req,res)=>{
+    const comments = {
+        comments:req.body.comments,
+        id:req.body.id
+    }
+    db.collection("comments").insert(comments,(err,data)=>{
+        console.log(comments,"comments")
+        res.redirect("/post")
+    })
 })
 
 module.exports = router;
