@@ -7,7 +7,6 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       <style>
-        #comments {display: none;}
         </style>
     </head>
     <body>
@@ -26,12 +25,14 @@
         <div class="container">
             <h1 class=" text-center">POST</h1>
         </div>
-        <div class="container col-5 d-flex flex-column">
-            <%for(i=0;i<post.length;i++){%>
-                <h1>Title--<%=post[i].title%></h1>
-                <p>Description--<%=post[i].desc%></p>
-                <h4>createdby--<%=post[i].createdby%></h4>
-                <h5>Tags--<%=post[i].tags%></h5>
+        <div class="container d-flex flex-row justify-content-between flex-wrap">
+          <%for(i=0;i<post.length;i++){%>
+            <div class="card" style="width: 18rem;">
+              <h1 class="text-center"><%=post[i].title%></h1>
+              <div class="card-body">
+                <p class="text-center"><%=post[i].desc%></p>
+                <h5>createdby--<%=post[i].createdby%></h5>
+                <h6>Tags--<%=post[i].tags%></h6>
                 <button onclick="myFunction()" class="btn btn-info">comment</button>
                 <div id="comments">
                   <form action="/post" method="POST">
@@ -39,17 +40,19 @@
                     <input style="display: none;"  value="<%=post[i]._id%>" name="id" readonly/>
                     <button type="submit" class="btn btn-dark">add</button>
                   </form>
-                    <%for(j=0;j<comments.length;j++){%>
-                        <%if(post[i]._id==comments[j].id){%>
-                          <p><%=comments[j].comments%></p>
-                        <%}%>
+                  <%for(j=0;j<comments.length;j++){%>
+                      <%if(post[i]._id==comments[j].id){%>
+                        <p><%=comments[j].comments%></p>
                       <%}%>
+                    <%}%>
+                    </div>
+                  </div>
                 </div>
                 <%}%>
-        </div>          
+        </div>
           <script>
           function myFunction() {
-            var comments = document.getElementById("comments");
+            var comments = document.getElementById(`comments`);
           
             if (comments.style.display === "none") {
              comments.style.display = "inline";
